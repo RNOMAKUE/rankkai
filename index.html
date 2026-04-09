@@ -61,20 +61,18 @@
         .text-reached { color: #2e7d32; }
         .text-missed { color: #e65100; }
         
-        /* 数字をはみ出させずに全体縮小させる特製CSS */
+        /* ↓ここを調整しました！ギリギリまで大きくしています↓ */
         .day-gain { 
-            font-size: 10px; /* 基本サイズ */
+            font-size: 11px; /* 10pxから11pxへ微増 */
             color: #333; 
             font-weight: 800; 
             font-family: 'Helvetica Neue', Arial, sans-serif; 
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px; /* 文字同士を少し近づけて横幅を節約 */
             white-space: nowrap; 
             display: block;
-            /* 仮想的に枠を150%に広げる */
-            width: 150%;
-            margin-left: -25%; /* 広げた分、中央にズラす */
-            /* 全体を70%のサイズにギュッと縮小する */
-            transform: scale(0.7);
+            width: 120%; /* 枠の広げ方を150%→120%に最適化 */
+            margin-left: -10%; 
+            transform: scale(0.85); /* 70%から85%に拡大！ */
             transform-origin: center center;
         }
 
@@ -260,7 +258,6 @@
             if (data) {
                 cell.classList.add(data.reached ? 'status-reached' : 'status-missed');
                 
-                // 省略関数を外して、フル数字にカンマを付けたものをそのまま出力
                 content += `
                     <button class="delete-btn" onclick="deleteRecord('${dateStr}', event)">×</button>
                     <div class="day-info">
